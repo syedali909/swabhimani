@@ -36,5 +36,4 @@ const ShopingScreen= (props)=> {
     )
 }
 
-
 export default ShopingScreen;
