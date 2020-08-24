@@ -11,6 +11,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import SearchScreen from "../screeens/SearchScreen";
+import SettingScreen from "../screeens/SettingScreen";
+import { LocalizationContext } from "../App";
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,8 +23,10 @@ const defaultNavOptions = {
     backgroundColor: Platform.OS === "android" ? Colors.primary : "",
   },
   headerTitleStyle: {},
-  headerBackTitleStyle: {},
-  headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans'
+  },
+    headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
 };
 export const TabNavigator = () => {
   return (
@@ -70,12 +74,22 @@ const MainPageNavigator = () => {
   );
 };
 
+const UtilitiesScreen = () => {
+  return (
+    <Stack.Navigator screenOptions={defaultNavOptions}>
+      <Stack.Screen name="LanSetting" component={SettingScreen} />
+    </Stack.Navigator>
+  );
+};
+
 export const MainNavigation = () => {
+  const { t } = React.useContext(LocalizationContext);
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName={'Home'}>
-      <Drawer.Screen name="Find" component={SearchScreen} options={{title:''}} />
-        <Drawer.Screen name="Home" component={TabNavigator} />
+      <Drawer.Navigator initialRouteName={"Home"} backBehavior="order">
+        <Drawer.Screen name="Home" component={TabNavigator} options={{drawerLabel:t("Home")}} />
+        <Drawer.Screen name="Setting" component={UtilitiesScreen} options={{drawerLabel:t("Setting")}} />
+        <Drawer.Screen name="Find"  component={SearchScreen} options={{drawerLabel:t("Find")}} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
