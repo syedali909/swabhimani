@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { LocalizationContext } from "../App";
 import { RadioButton } from "react-native-paper";
 import AppHeader from '../component/AppHeader';
+import { LocalizationContext } from "../constant/localName";
 
 
 export default function SettingScreen(props) {

@@ -12,7 +12,8 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import SearchScreen from "../screeens/SearchScreen";
 import SettingScreen from "../screeens/SettingScreen";
-import { LocalizationContext } from "../App";
+import { LocalizationContext } from "../constant/localName";
+
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();

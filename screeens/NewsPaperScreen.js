@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, Picker } from "react-native";
-import { LocalizationContext } from "../App";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { LocalizationContext } from "../constant/localName";
 // Set the key-value pairs for the different languages you want to support.
 
 const NewsPaperScreen = (props) => {

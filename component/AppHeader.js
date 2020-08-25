@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { LocalizationContext } from '../App';
+import { LocalizationContext } from '../constant/localName';
 
 
 const AppHeader = (props,name) => {
