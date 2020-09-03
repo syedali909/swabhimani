@@ -3,3 +3,8 @@ type Todo @model {
   name: String!
   description: String
 }
+
+type News @model{
+    id: ID!
+    headline: String!
+}

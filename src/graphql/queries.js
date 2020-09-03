@@ -30,3 +30,30 @@ export const listTodos = /* GraphQL */ `
     }
   }
 `;
+export const getNews = /* GraphQL */ `
+  query GetNews($id: ID!) {
+    getNews(id: $id) {
+      id
+      headline
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listNewss = /* GraphQL */ `
+  query ListNewss(
+    $filter: ModelNewsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNewss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        headline
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
