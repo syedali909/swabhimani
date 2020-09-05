@@ -11,6 +11,7 @@ import {Provider} from 'react-redux'
 import {createStore,combineReducers} from 'redux'
 import { createNewsReduce } from './store/reducer/newsReducer';
 import {mr,en} from './constant/localName'
+import Help from './Help';
 
 const reducer = combineReducers({
   CreateNews: createNewsReduce})

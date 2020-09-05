@@ -15,7 +15,7 @@ import SettingScreen from "../screeens/SettingScreen";
 import { LocalizationContext } from "../constant/localName";
 import CreateNews from "../screeens/NewsScreen/CreateNews";
 import { t } from "i18n-js";
-import VideoRecording from "../component/CreateNewsComponent/VideoRecording";
+import VideoRecording from "../component/CreateNewsComponent/AppCamera";
 import MapViewfile from "../component/CreateNewsComponent/PlaceFinder";
 
 

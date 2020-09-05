@@ -4253,6 +4253,14 @@ expo-asset@~8.1.7:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-av@^8.1.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-8.4.0.tgz#84881f89df35361893b55e739a639cd51d3ecf04"
+  integrity sha512-yboOV6hlZTKPjcEb7bxqIPAQIZ5SupaPEWvGv7aVzdoPNhmY4/uEceMQ6Pm8d33r72Zofp5fR1a2Alvg18bVUQ==
+  dependencies:
+    lodash "^4.17.15"
+    nullthrows "^1.1.0"
+
 expo-av@~8.2.1:
   version "8.2.1"
   resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-8.2.1.tgz#cab16a5f0766b84a7c2e05e04523cb73a0cd4e9b"
@@ -4377,6 +4385,14 @@ expo-video-player@^1.6.0:
   dependencies:
     tslib "^2.0.1"
     with-default-props "^0.2.1"
+
+expo-video@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expo-video/-/expo-video-1.0.2.tgz#5d1e8e9f4068e5f0513001ffe65fddf1fbba03a8"
+  integrity sha512-S7anFxsOWoxl1QUxOO+bmGhSYsHVIiYvYnb6+dtPQDvC8PYyi3GnjLLJkzvLlFB21z0pxjq7tNF8B6xEGOGUWA==
+  dependencies:
+    expo-av "^8.1.0"
+    use-debounce "^3.4.1"
 
 expo@~38.0.8:
   version "38.0.9"
@@ -7695,6 +7711,11 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-debounce@^3.4.1:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-3.4.3.tgz#5df9322322b3f1b1c263d46413f9facf6d8b56ab"
+  integrity sha512-nxy+opOxDccWfhMl36J5BSCTpvcj89iaQk2OZWLAtBJQj7ISCtx1gh+rFbdjGfMl6vtCZf6gke/kYvrkVfHMoA==
 
 use-subscription@^1.0.0, use-subscription@^1.4.0:
   version "1.4.1"

@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, TouchableOpacity, Image, Text } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Image,
+  Text,
+  StatusBar,
+  Dimensions,
+} from "react-native";
 import { Camera } from "expo-camera";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Permissions from "expo-permissions";
-import { Video } from 'expo-av';
-import VideoPlayer from 'expo-video-player'
+import { Video } from "expo-av";
+import VideoPlayer from "expo-video-player";
 
 export default function VideoRecording(props) {
   props.navigation.setOptions({ headerShown: false });
@@ -45,21 +52,63 @@ export default function VideoRecording(props) {
     console.log("photo", photo);
   };
 
+  const CaptureHeader = (
+    <View
+      style={{
+        justifyContent: "space-between",
+        flexDirection: "row",
+        backgroundColor: "black",
+      }}
+    >
+      <Icon.Button
+        name="check"
+        size={30}
+        backgroundColor="black"
+        onPress={() => {
+          props.route;
+          props.navigation.navigate("CreateNews", {
+            link: captureImg,
+            isVideo: camFuncVideo,
+          });
+        }}
+      />
+
+      <Icon.Button
+        name="close-circle-outline"
+        size={30}
+        backgroundColor="black"
+        onPress={() => {
+          setcaptureImg(null);
+        }}
+      />
+    </View>
+  );
+
   if (captureImg) {
-    console.log("captureImg", captureImg);
-    return camFuncVideo ? (
-<VideoPlayer
-  videoProps={{
-    shouldPlay: true,
-    resizeMode: Video.RESIZE_MODE_CONTAIN,
-    source: {
-      uri: captureImg.uri     },
-  }}
-  inFullscreen={true}
-/>
-    ) : (
+    return (
       <View style={{ flex: 1 }}>
-        <Image source={{ uri: captureImg.uri }} style={{ flex: 1 }} />
+        <StatusBar hidden={true} />
+        {camFuncVideo ? (
+          <View>
+            {CaptureHeader}
+            <VideoPlayer
+              height={Dimensions.get("window").height - 40}
+              videoProps={{
+                shouldPlay: true,
+                resizeMode: Video.RESIZE_MODE_CONTAIN,
+                source: {
+                  uri: captureImg.uri,
+                },
+              }}
+              inFullscreen={true}
+            />
+          </View>
+        ) : (
+          <View style={{ flex: 1 }}>
+            {CaptureHeader}
+            <Image source={{ uri: captureImg.uri }} style={{ flex: 1 }} />
+          </View>
+        )}
       </View>
     );
   }
@@ -168,6 +217,7 @@ export default function VideoRecording(props) {
 
   return (
     <View style={{ flex: 1 }}>
+      <StatusBar hidden={true} />
       <Camera
         ref={refcam}
         style={{ flex: 1, flexDirection: "column-reverse" }}
