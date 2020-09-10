@@ -1,4 +1,4 @@
 
-export   const createNewsAction = (funBody) => {
+export   const createNewsAction = () => {
     return { type: funBody  };
   };

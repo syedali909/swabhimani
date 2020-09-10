@@ -8,9 +8,9 @@ export const en = {
   Find: "Search",
   TabNews:"News",
   TabShop:"Shop",
-  CreateNews:"Create News",
-  HeadLineofNews : "Please enter headline of your news",
-  ContentofNews :"Please enter headline of your news",
+  CreateNews:"Create News", 
+  HeadLineofNews : "       Please enter headline of your news                           ",
+  ContentofNews  : "       Please enter content of your news                            ",
 
 };
 
@@ -23,8 +23,8 @@ export const mr = {
   TabNews:"न्यूस",
   TabShop:"खरेदी",
   CreateNews:"बातम्या तयार करा",
-  HeadLineofNews : "कृपया आपल्या बातमीची शीर्षके लिहा",
-  ContentofNews :"कृपया आपल्या बातमी लिहा",
+  HeadLineofNews : "            कृपया आपल्या बातमीची शीर्षके लिहा                                 ",
+  ContentofNews :  "            कृपया आपल्या बातमी लिहा                                       ",
 
 };
 

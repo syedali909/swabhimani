@@ -5,13 +5,14 @@ import {MainNavigation} from './navigation/MainNavigation';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import config from './aws-exports'
 import { LocalizationContext} from './constant/localName'
+import { withOAuth } from "aws-amplify-react-native";
 
 import { createNews, updateNews, deleteNews } from './src/graphql/mutations';
 import {Provider} from 'react-redux' 
 import {createStore,combineReducers} from 'redux'
 import { createNewsReduce } from './store/reducer/newsReducer';
 import {mr,en} from './constant/localName'
-import Help from './Help';
+import * as WebBrowser from 'expo-web-browser';
 
 const reducer = combineReducers({
   CreateNews: createNewsReduce})
@@ -20,7 +21,28 @@ const store = createStore(reducer)
 i18n.fallbacks = true;
 i18n.translations = { mr, en };
 
-Amplify.configure(config)
+async function urlOpener(url, redirectUrl) {
+  const { type, url: newUrl } = await WebBrowser.openAuthSessionAsync(
+      url,
+      redirectUrl
+  );
+
+  if (type === 'success' && Platform.OS === 'ios') {
+      WebBrowser.dismissBrowser();
+      return Linking.openURL(newUrl);
+  }
+}
+
+Amplify.configure({
+  ...config,
+  Analytics: { 
+    disabled: true
+  },
+  oauth: {
+    ...config.oauth,
+    urlOpener,
+},
+})
 
 // graphQL aws amplify
 
@@ -34,8 +56,7 @@ Amplify.configure(config)
 
 // /* update a todo */
 // }
-
-export default function App() {
+ const App = ()=> {
 
   const [locale, setLocale] = React.useState(Localization.locale);
   const localizationContext = React.useMemo(
@@ -55,3 +76,6 @@ export default function App() {
 
   );
 }
+
+
+export default App;
