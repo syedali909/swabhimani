@@ -1,6 +1,6 @@
 projects:
   swabhimani:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/swabhimani/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

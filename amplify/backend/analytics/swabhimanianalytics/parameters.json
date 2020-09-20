@@ -1,0 +1,21 @@
+{
+    "appName": "swabhimanianalytics",
+    "roleName": "pinpointLambdaRole4035d1ea",
+    "cloudformationPolicyName": "cloudformationPolicy4035d1ea",
+    "cloudWatchPolicyName": "cloudWatchPolicy4035d1ea",
+    "pinpointPolicyName": "pinpointPolicy4035d1ea",
+    "authPolicyName": "pinpoint_amplify_4035d1ea",
+    "unauthPolicyName": "pinpoint_amplify_4035d1ea",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

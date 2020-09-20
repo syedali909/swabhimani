@@ -1,6 +1,6 @@
 {
     "identityPoolName": "swabhimanid7abaec6_identitypool_d7abaec6",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "swabhid7abaec6",
     "userPoolName": "swabhimanid7abaec6_userpool_d7abaec6",
     "autoVerifiedAttributes": [

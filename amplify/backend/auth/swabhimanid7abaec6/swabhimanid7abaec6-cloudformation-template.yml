@@ -95,9 +95,6 @@ Parameters:
   hostedUI:
     Type: String
             
-  hostedUIProviderCreds:
-    Type: String
-              
   hostedUIDomainName:
     Type: String
                       
@@ -109,7 +106,10 @@ Parameters:
               
   oAuthMetadata:
     Type: String
-                        
+              
+  hostedUIProviderCreds:
+    Type: String
+            
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
 

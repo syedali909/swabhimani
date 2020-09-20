@@ -14,18 +14,22 @@ import {
 } from "aws-amplify-react-native";
 import { withOAuth } from "aws-amplify-react-native";
 import SignIn from '../../component/AuthnticationUI/SignIn'
+import { I18n } from 'aws-amplify';
 
 import AmplifyThemeUI from "../../component/AmplifyThemeUI";
 import NewsAddingScreen from "../../component/CreateNewsComponent/NewsAddingScreen";
+import { authScreenLabels } from "../../constant/localName";
+import { Auth } from "aws-amplify";
+import { Logger } from 'aws-amplify';
+
 
 const CreateNews = (props) => {
-
- 
+  const logger = new Logger('foo');
+  
   const {
     facebookSignIn,
     googleSignIn,
   } = props;
-
 
 
   const map = (message) => {
@@ -41,6 +45,7 @@ const CreateNews = (props) => {
   return (
     <Authenticator
       errorMessage={map}
+      authData="signIn"
       hideDefault={true}
       usernameAttributes="email"
       theme={ AmplifyThemeUI}
@@ -64,7 +69,6 @@ const CreateNews = (props) => {
 
 
 const signUpConfig = {
-  header: "Account Creation",
   hideAllDefaults: true,
   defaultCountryCode: "91",
   signUpFields: [

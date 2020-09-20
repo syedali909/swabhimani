@@ -8,13 +8,24 @@ import {
 } from "react-native-paper";
 import { Auth } from "aws-amplify";
 import { View } from "react-native";
+import { useDispatch } from "react-redux";
+import { currentUsersInfo } from "../../store/action/newsAction";
 
 const SignIn = (props) => {
+
+  const [user, setuser] = useState()
+  Auth.currentUserInfo().then(data=>setuser(data?.username))
+  const dispatch = useDispatch();
+  dispatch(currentUsersInfo(user))
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const textInputref = useRef();
+
+
+
   const onPressHandler = async (props) => {
     try {
       setLoading(true);
@@ -26,6 +37,8 @@ const SignIn = (props) => {
       setError(error);
     }
   };
+
+
 
   const isBlank = (value) => {
     return value !== "" && value !== " ";

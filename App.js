@@ -2,21 +2,23 @@ import * as React from 'react';
 import * as Localization from 'expo-localization'; // or whatever library you want
 import i18n from 'i18n-js'; // or whatever library you want
 import {MainNavigation} from './navigation/MainNavigation';
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import Amplify, { API, graphqlOperation, Auth ,Analytics} from 'aws-amplify';
 import config from './aws-exports'
 import { LocalizationContext} from './constant/localName'
-import { withOAuth } from "aws-amplify-react-native";
 
 import { createNews, updateNews, deleteNews } from './src/graphql/mutations';
-import {Provider} from 'react-redux' 
+import {Provider, useDispatch} from 'react-redux' 
 import {createStore,combineReducers} from 'redux'
-import { createNewsReduce } from './store/reducer/newsReducer';
+import { createNewsReduce, userAuthState } from './store/reducer/newsReducer';
 import {mr,en} from './constant/localName'
 import * as WebBrowser from 'expo-web-browser';
 
 const reducer = combineReducers({
-  CreateNews: createNewsReduce})
+  CreateNews: createNewsReduce,
+  UserInfo: userAuthState
+   })
 const store = createStore(reducer)
+
 
 i18n.fallbacks = true;
 i18n.translations = { mr, en };
@@ -35,9 +37,9 @@ async function urlOpener(url, redirectUrl) {
 
 Amplify.configure({
   ...config,
-  Analytics: { 
-    disabled: true
-  },
+  // Analytics: { 
+  //   disabled: fa
+  // },
   oauth: {
     ...config.oauth,
     urlOpener,
@@ -45,18 +47,17 @@ Amplify.configure({
 })
 
 // graphQL aws amplify
-
-
 // const todo = { headline: "My first headline" };
-
-
 
 // const grphfunc = async()=>{
 // await API.graphql(graphqlOperation(createNews, {input: todo}));
 
 // /* update a todo */
 // }
+
  const App = ()=> {
+
+
 
   const [locale, setLocale] = React.useState(Localization.locale);
   const localizationContext = React.useMemo(
@@ -76,6 +77,8 @@ Amplify.configure({
 
   );
 }
+
+
 
 
 export default App;

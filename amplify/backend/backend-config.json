@@ -15,6 +15,20 @@
           "additionalAuthenticationProviders": []
         }
       }
+    },
+    "lambdarest": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "swabhimaniexpresslambda",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "auth": {
@@ -23,6 +37,100 @@
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false
+    }
+  },
+  "storage": {
+    "S3swabhimaniStorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "function": {
+    "swabhimanilambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "swabhimani",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "S3swabhimaniStorage",
+          "attributes": [
+            "BucketName"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "swabhimanilambdalayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "swabhimanilambdalayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    },
+    "swabhimaniexpresslambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "swabhimani",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        },
+        {
+          "category": "auth",
+          "resourceName": "swabhimanid7abaec6",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "S3swabhimaniStorage",
+          "attributes": [
+            "BucketName"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "swabhimanilambda",
+          "attributes": [
+            "Name"
+          ]
+        },
+        {
+          "category": "analytics",
+          "resourceName": "swabhimanianalytics",
+          "attributes": [
+            "Id",
+            "Region"
+          ]
+        }
+      ]
+    }
+  },
+  "analytics": {
+    "swabhimanianalytics": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

@@ -18,5 +18,56 @@
         }
       }
     }
+  },
+  "swabhimani": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-swabhimani-swabhimani-100153-authRole",
+      "UnauthRoleArn": "arn:aws:iam::499287077474:role/amplify-swabhimani-swabhimani-100153-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::499287077474:role/amplify-swabhimani-swabhimani-100153-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-swabhimani-swabhimani-100153-deployment",
+      "UnauthRoleName": "amplify-swabhimani-swabhimani-100153-unauthRole",
+      "StackName": "amplify-swabhimani-swabhimani-100153",
+      "StackId": "arn:aws:cloudformation:us-east-1:499287077474:stack/amplify-swabhimani-swabhimani-100153/bceef6c0-f89e-11ea-a416-12eeb59f3ad1",
+      "AmplifyAppId": "d1izx6o04hs0jj"
+    },
+    "categories": {
+      "auth": {
+        "swabhimanid7abaec6": {
+          "hostedUIProviderCreds": "[]"
+        }
+      },
+      "function": {
+        "swabhimanilambda": {},
+        "swabhimanilambdalayer": {
+          "deploymentBucketName": "amplify-swabhimani-swabhimani-100153-deployment",
+          "s3Key": "amplify-builds/swabhimanilambdalayer-build.zip"
+        }
+      }
+    },
+    "nonCFNdata": {
+      "function": {
+        "swabhimanilambdalayer": {
+          "layerVersionMap": {
+            "1": {
+              "permissions": [
+                {
+                  "type": "private"
+                }
+              ],
+              "hash": "WA7ifF3fry3Zgyj1nlgwepgxhvMKbuDxllQdC2DrcK0="
+            },
+            "2": {
+              "permissions": [
+                {
+                  "type": "private"
+                }
+              ],
+              "hash": "bL/48BtlOr5VTzx7yKPomIpB1x0p9WT7tdakQ4dbRZ0="
+            }
+          }
+        }
+      }
+    }
   }
 }

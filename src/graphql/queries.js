@@ -34,7 +34,10 @@ export const getNews = /* GraphQL */ `
   query GetNews($id: ID!) {
     getNews(id: $id) {
       id
+      user
+      uri
       headline
+      content
       createdAt
       updatedAt
     }
@@ -49,7 +52,10 @@ export const listNewss = /* GraphQL */ `
     listNewss(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        user
+        uri
         headline
+        content
         createdAt
         updatedAt
       }

@@ -1,0 +1,46 @@
+{
+    "paths": [
+        {
+            "name": "/news",
+            "lambdaFunction": "swabhimaniexpresslambda",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/news"
+        }
+    ],
+    "resourceName": "lambdarest",
+    "apiName": "lambdarest",
+    "functionArns": [
+        {
+            "lambdaFunction": "swabhimaniexpresslambda"
+        }
+    ],
+    "privacy": {
+        "auth": 2,
+        "unauth": 1,
+        "authRoleName": "amplify-swabhimani-swabhimani-100153-authRole",
+        "unAuthRoleName": "amplify-swabhimani-swabhimani-100153-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "swabhimaniexpresslambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "cf136498"
+}

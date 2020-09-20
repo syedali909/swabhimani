@@ -38,7 +38,10 @@ export const onCreateNews = /* GraphQL */ `
   subscription OnCreateNews {
     onCreateNews {
       id
+      user
+      uri
       headline
+      content
       createdAt
       updatedAt
     }
@@ -48,7 +51,10 @@ export const onUpdateNews = /* GraphQL */ `
   subscription OnUpdateNews {
     onUpdateNews {
       id
+      user
+      uri
       headline
+      content
       createdAt
       updatedAt
     }
@@ -58,7 +64,10 @@ export const onDeleteNews = /* GraphQL */ `
   subscription OnDeleteNews {
     onDeleteNews {
       id
+      user
+      uri
       headline
+      content
       createdAt
       updatedAt
     }

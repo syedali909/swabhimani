@@ -50,7 +50,10 @@ export const createNews = /* GraphQL */ `
   ) {
     createNews(input: $input, condition: $condition) {
       id
+      user
+      uri
       headline
+      content
       createdAt
       updatedAt
     }
@@ -63,7 +66,10 @@ export const updateNews = /* GraphQL */ `
   ) {
     updateNews(input: $input, condition: $condition) {
       id
+      user
+      uri
       headline
+      content
       createdAt
       updatedAt
     }
@@ -76,7 +82,10 @@ export const deleteNews = /* GraphQL */ `
   ) {
     deleteNews(input: $input, condition: $condition) {
       id
+      user
+      uri
       headline
+      content
       createdAt
       updatedAt
     }

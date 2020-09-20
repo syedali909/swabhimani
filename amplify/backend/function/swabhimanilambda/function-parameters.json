@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "api": {
+      "swabhimani": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "S3swabhimaniStorage": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "Todo:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "News:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "swabhimanilambdalayer",
+      "version": 2
+    }
+  ]
+}

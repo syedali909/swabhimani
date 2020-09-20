@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "S3Trigger307e8825:index.handler (nodejs12.x)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "amplify/backend/function/S3Trigger307e8825/src",
+                "lambdaHandler": "index.handler"
+            },
+            "lambda": {
+                "runtime": "nodejs12.x",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        }
+    ]
+}

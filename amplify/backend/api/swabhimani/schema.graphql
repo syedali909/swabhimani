@@ -6,5 +6,8 @@ type Todo @model {
 
 type News @model{
     id: ID!
+    user: String!
+    uri : String
     headline: String!
+    content: String!
 }
