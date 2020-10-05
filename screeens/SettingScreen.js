@@ -4,16 +4,19 @@ import { RadioButton , Button} from "react-native-paper";
 import AppHeader from "../component/AppHeader";
 import { LocalizationContext } from "../constant/localName";
 import { Auth } from "aws-amplify";
+import { useDispatch } from "react-redux";
+import { currentUsersInfo } from "../store/action/newsAction";
 
 export default function SettingScreen(props) {
   const { t, locale, setLocale } = React.useContext(LocalizationContext);
 
   // props.navigation.setOptions(AppHeader(props,"Setting"))
   const [value, setValue] = React.useState("first");
-
+  const dispatch = useDispatch();
   const  signOut= async()=> {
     try {
         await Auth.signOut();
+        dispatch(currentUsersInfo(null));
     } catch (error) {
         console.log('error signing out: ', error);
     }

@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/news",
+            "lambdaFunction": "swabhimaniExpressLambda",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/news"
+        }
+    ],
+    "resourceName": "restNewsApi",
+    "apiName": "restNewsApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "swabhimaniExpressLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-swabhimani-swabhimani-100153-authRole",
+        "unAuthRoleName": "amplify-swabhimani-swabhimani-100153-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "swabhimaniExpressLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

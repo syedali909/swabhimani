@@ -5,7 +5,7 @@ import { Text, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import NewsPaperScreen from "../screeens/NewsPaperScreen";
+import NewsPaperScreen from "../screeens/NewsScreen/NewsPaperScreen";
 import ShopingScreen from "../screeens/ShopingScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -13,10 +13,11 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import SearchScreen from "../screeens/SearchScreen";
 import SettingScreen from "../screeens/SettingScreen";
 import { LocalizationContext } from "../constant/localName";
-import CreateNews from "../screeens/NewsScreen/CreateNews";
+import NewsAddingScreen from "../screeens/NewsScreen/NewsAddingWithAuth";
 import { t } from "i18n-js";
-import VideoRecording from "../component/CreateNewsComponent/AppCamera";
-import MapViewfile from "../component/CreateNewsComponent/PlaceFinder";
+import VideoRecording from "../component/NewsComponent/AppCamera";
+import MapViewfile from "../component/NewsComponent/PlaceFinder";
+import NewsInDetailScreen from "../screeens/NewsScreen/NewsInDetailScreen";
 
 
 const Drawer = createDrawerNavigator();
@@ -59,13 +60,13 @@ export const TabNavigator = () => {
         //  route.state?.routes[1].name
          return <Entypo name={iconName} size={size} color={color} />;
         },
-      tabBarVisible :  getTabBarVisible(route, ["CreateNews","MapViewFile"])
-      
+      tabBarVisible :  getTabBarVisible(route, ["CreateNews","MapViewFile","NewsInDetail"])
+
       })}}
       tabBarOptions={{
         activeTintColor: "blue",
         inactiveTintColor: "gray",
-        
+
       }}
     >
       <Tab.Screen name="NewsPaperNav" component={NewsPaperNavigator} options={{title:t("TabNews")}} />
@@ -79,7 +80,8 @@ export const NewsPaperNavigator = () => {
   return (
     <Stack.Navigator screenOptions={defaultNavOptions}>
       <Stack.Screen name="News" component={NewsPaperScreen} />
-      <Stack.Screen name="CreateNews" component={CreateNews} options={{headerTitle:t('CreateNews'),}} />
+      <Stack.Screen name="NewsInDetail" component={NewsInDetailScreen} />
+      <Stack.Screen name="CreateNews" component={NewsAddingScreen} options={{headerTitle:t('CreateNews'),}} />
       <Stack.Screen name="Camera" component={VideoRecording}/>
       <Stack.Screen name="MapViewFile" component={MapViewfile} />
 

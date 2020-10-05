@@ -15,7 +15,8 @@
       "auth": {
         "swabhimanid7abaec6": {
           "hostedUIProviderCreds": "[]"
-        }
+        },
+        "userPoolGroups": {}
       }
     }
   },
@@ -34,36 +35,30 @@
     "categories": {
       "auth": {
         "swabhimanid7abaec6": {
-          "hostedUIProviderCreds": "[]"
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"306803007288598\",\"client_secret\":\"e5f8f7c2c654f9a28c0cc097b4434313\"},{\"ProviderName\":\"Google\",\"client_id\":\"556976998044-567ne7o6uvbv8etcl7ovbh6k4tnng5uc.apps.googleusercontent.com\",\"client_secret\":\"IfPwOCTaW1EL-1J8iRme8tx8\"}]"
         }
       },
       "function": {
-        "swabhimanilambda": {},
-        "swabhimanilambdalayer": {
+        "swabhimaniLayer": {
           "deploymentBucketName": "amplify-swabhimani-swabhimani-100153-deployment",
-          "s3Key": "amplify-builds/swabhimanilambdalayer-build.zip"
+          "s3Key": "amplify-builds/swabhimaniLayer-build.zip"
         }
       }
     },
     "nonCFNdata": {
       "function": {
-        "swabhimanilambdalayer": {
+        "swabhimaniLayer": {
           "layerVersionMap": {
             "1": {
               "permissions": [
                 {
-                  "type": "private"
-                }
-              ],
-              "hash": "WA7ifF3fry3Zgyj1nlgwepgxhvMKbuDxllQdC2DrcK0="
-            },
-            "2": {
-              "permissions": [
+                  "type": "public"
+                },
                 {
                   "type": "private"
                 }
               ],
-              "hash": "bL/48BtlOr5VTzx7yKPomIpB1x0p9WT7tdakQ4dbRZ0="
+              "hash": "pxyvya/PGJ3Ois1UjQBApng670U74+XJT6Wr6m88TPY="
             }
           }
         }

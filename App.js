@@ -8,16 +8,19 @@ import { LocalizationContext} from './constant/localName'
 
 import { createNews, updateNews, deleteNews } from './src/graphql/mutations';
 import {Provider, useDispatch} from 'react-redux' 
-import {createStore,combineReducers} from 'redux'
+import {createStore,combineReducers, applyMiddleware} from 'redux'
 import { createNewsReduce, userAuthState } from './store/reducer/newsReducer';
 import {mr,en} from './constant/localName'
 import * as WebBrowser from 'expo-web-browser';
+import thunk from 'redux-thunk';
+import { AppLoading } from 'expo';
+import { useFonts, NotoSans_400Regular } from '@expo-google-fonts/noto-sans';
 
 const reducer = combineReducers({
   CreateNews: createNewsReduce,
   UserInfo: userAuthState
    })
-const store = createStore(reducer)
+const store = createStore(reducer,applyMiddleware(thunk))
 
 
 i18n.fallbacks = true;
@@ -46,18 +49,7 @@ Amplify.configure({
 },
 })
 
-// graphQL aws amplify
-// const todo = { headline: "My first headline" };
-
-// const grphfunc = async()=>{
-// await API.graphql(graphqlOperation(createNews, {input: todo}));
-
-// /* update a todo */
-// }
-
  const App = ()=> {
-
-
 
   const [locale, setLocale] = React.useState(Localization.locale);
   const localizationContext = React.useMemo(
@@ -68,6 +60,16 @@ Amplify.configure({
     }),
     [locale]
   );
+
+  let [fontsLoaded] = useFonts({
+    NotoSans_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+
   return (
     <LocalizationContext.Provider value={localizationContext}>
     <Provider store={store}>

@@ -1,6 +1,6 @@
 projects:
-  swabhimani:
-    schemaPath: amplify/backend/api/swabhimani/build/schema.graphql
+  graphQlNewsApi:
+    schemaPath: amplify/backend/api/graphQlNewsApi/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -9,7 +9,10 @@ projects:
       amplify:
         codeGenTarget: javascript
         generatedFileName: ''
-        docsFilePath: src/graphql
+        docsFilePath: /graphql
+        region: us-east-1
+        apiId: null
+        maxDepth: 5
 extensions:
   amplify:
     version: 3

@@ -1,0 +1,61 @@
+{
+  "permissions": {
+    "api": {
+      "graphQlNewsApi": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "auth": {
+      "swabhimanid7abaec6": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "S3swabhimaniStorage": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "News:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "Comment:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "Like:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "analytics": {
+      "swabhimanianalytics": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "swabhimaniLayer",
+      "version": 1
+    }
+  ]
+}

@@ -3,6 +3,21 @@
         {
             "type": "aws-sam",
             "request": "direct-invoke",
+            "name": "sayed:store/reducer/newsReducer.createNewsReduce (nodejs12.x)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "",
+                "lambdaHandler": "store/reducer/newsReducer.createNewsReduce"
+            },
+            "lambda": {
+                "runtime": "nodejs12.x",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
             "name": "S3Trigger307e8825:index.handler (nodejs12.x)",
             "invokeTarget": {
                 "target": "code",

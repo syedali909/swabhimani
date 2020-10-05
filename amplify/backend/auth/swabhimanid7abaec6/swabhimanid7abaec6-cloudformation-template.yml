@@ -94,7 +94,25 @@ Parameters:
         
   hostedUI:
     Type: String
+              
+  userPoolGroups:
+    Type: String
+              
+  adminQueries:
+    Type: String
             
+  triggers:
+    Type: String
+              
+  serviceName:
+    Type: String
+                    
+  parentStack:
+    Type: String
+                
+  permissions:
+    Type: CommaDelimitedList
+      
   hostedUIDomainName:
     Type: String
                       
@@ -166,9 +184,6 @@ Resources:
       
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
-      
-      EmailVerificationMessage: !Ref emailVerificationMessage
-      EmailVerificationSubject: !Ref emailVerificationSubject
             
       Policies:
         PasswordPolicy:
@@ -184,6 +199,18 @@ Resources:
         SnsCallerArn: !GetAtt SNSRole.Arn
         ExternalId: swabhid7abaec6_role_external_id
     
+  
+    
+    
+  
+    
+    
+  
+  
+   
+    
+  # Updating lambda role with permissions to Cognito
+  
   
   UserPoolClientWeb:
   # Created provide application access to user pool

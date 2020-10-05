@@ -1,34 +1,31 @@
-import React from "react";
-import { View, Text, Button } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { actionofbody } from "./store/action/newsAction";
-var i = 1;
-export function Help1st() {
-  const bodyState = useSelector((state) => state);
-  console.log("bodyState", bodyState);
-  const dispatch = useDispatch();
+import React, { useState } from "react";
+import {
+  Alert,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View
+} from "react-native";
 
+const App = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={{ marginTop: 100 }}>
-      <Button
-        title="Order Now"
+    <View style={styles.centeredView}>
+
+
+      <TouchableHighlight
+        style={styles.openButton}
         onPress={() => {
-          dispatch(actionofbody(i));
-          i = i == 4 ? i == 0 : (i = i + 1);
+          setModalVisible(true);
         }}
-      />
-      <Text>{bodyState}</Text>
-    </View>
-  );
-}
-
-const Help = (props) => {
-  return (
-    <View style={{ marginTop: 100 }}>
-      <Button title={props.name} />
-      <Text>{props.textcontent}</Text>
+      >
+        <Text style={styles.textStyle}>Show Modal</Text>
+      </TouchableHighlight>
     </View>
   );
 };
 
-export default Help;
+
+
+export default App;

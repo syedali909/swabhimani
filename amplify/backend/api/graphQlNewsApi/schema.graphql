@@ -1,0 +1,56 @@
+type News
+  @model
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "owner" }
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, provider: apiKey, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  owner: String
+  ownerName: String
+  uri: String
+  headline: String!
+  content: String!
+  comment: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  like: [Like] @connection(keyName: "byPostLike", fields: ["id"])
+}
+
+type Comment
+  @model
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "owner" }
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, provider: apiKey, operations: [read] }
+    ]
+  )
+  @key(name: "byPost", fields: ["newsId", "content"]) {
+  id: ID!
+  newsId: ID!
+  content: String!
+  owner: String
+  ownerName: String
+  like: [Like] @connection(keyName: "byCommentLike", fields: ["id"])
+}
+
+type Like
+  @model
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "owner" }
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, provider: apiKey, operations: [read] }
+    ]
+  )
+  @key(name: "byPostLike", fields: ["newsId", "id"])
+  @key(name: "byCommentLike", fields: ["commentId", "id"]) {
+  id: ID!
+  commentId: ID
+  newsId: ID
+  owner: String
+}

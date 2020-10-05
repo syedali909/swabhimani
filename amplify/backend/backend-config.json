@@ -1,28 +1,38 @@
 {
   "api": {
-    "swabhimani": {
+    "graphQlNewsApi": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 365,
-              "description": ""
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authswabhimanid7abaec6"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 365,
+                "description": "newsGraphQlApiKey"
+              }
+            },
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
     },
-    "lambdarest": {
+    "restNewsApi": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "swabhimaniexpresslambda",
+          "resourceName": "swabhimaniExpressLambda",
           "attributes": [
             "Name",
             "Arn"
@@ -37,6 +47,22 @@
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "swabhimanid7abaec6",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
     }
   },
   "storage": {
@@ -46,49 +72,19 @@
     }
   },
   "function": {
-    "swabhimanilambda": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "api",
-          "resourceName": "swabhimani",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput",
-            "GraphQLAPIKeyOutput"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "S3swabhimaniStorage",
-          "attributes": [
-            "BucketName"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "swabhimanilambdalayer",
-          "attributes": [
-            "Arn"
-          ]
-        }
-      ]
-    },
-    "swabhimanilambdalayer": {
+    "swabhimaniLayer": {
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer",
       "build": true
     },
-    "swabhimaniexpresslambda": {
+    "swabhimaniExpressLambda": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
       "dependsOn": [
         {
           "category": "api",
-          "resourceName": "swabhimani",
+          "resourceName": "graphQlNewsApi",
           "attributes": [
             "GraphQLAPIIdOutput",
             "GraphQLAPIEndpointOutput",
@@ -110,18 +106,18 @@
           ]
         },
         {
-          "category": "function",
-          "resourceName": "swabhimanilambda",
-          "attributes": [
-            "Name"
-          ]
-        },
-        {
           "category": "analytics",
           "resourceName": "swabhimanianalytics",
           "attributes": [
             "Id",
             "Region"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "swabhimaniLayer",
+          "attributes": [
+            "Arn"
           ]
         }
       ]
