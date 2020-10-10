@@ -75,6 +75,14 @@ export const listNewss = /* GraphQL */ `
             createdAt
             updatedAt
             like {
+              items {
+              id
+              commentId
+              newsId
+              owner
+              createdAt
+              updatedAt
+            }
               nextToken
             }
           }

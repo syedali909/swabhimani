@@ -14,6 +14,7 @@ import * as Network from 'expo-network';
 import { uploadAsync } from "expo-file-system";
 import { uploadToStorage } from "../../utilits/NewsUpload";
 import { Auth } from "aws-amplify";
+import * as ImageManipulator from "expo-image-manipulator";
 
 const NewsAddingScreen = (props) => {
   const { navigation, route } = props.props;
@@ -102,7 +103,13 @@ const NewsAddingScreen = (props) => {
       quality: 1,
     });
     if (!result.cancelled) {
-      setcaptureLink(result);
+      const manipResult = await ImageManipulator.manipulateAsync(
+        result.uri,
+        [{ resize: { width: 400, height: 350 } }],
+        { format: 'jpeg' }
+    );
+    console.log('manipResult', manipResult)
+      setcaptureLink(manipResult);
     }
   };
 

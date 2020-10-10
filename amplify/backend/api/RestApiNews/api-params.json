@@ -9,8 +9,8 @@
             "policyResourceName": "/news"
         }
     ],
-    "resourceName": "restNewsApi",
-    "apiName": "restNewsApi",
+    "resourceName": "RestApiNews",
+    "apiName": "RestApiNews",
     "functionArns": [
         {
             "lambdaFunction": "swabhimaniExpressLambda"

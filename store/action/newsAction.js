@@ -23,7 +23,6 @@ export const loadNews = () => async (dispatch, getState) => {
       query: listNewss,
       authMode: "API_KEY",
     });
-    console.log('list', list)
     dispatch(setListNews(list.data.listNewss.items));
   } catch (error) {
     console.log('error')

@@ -41,15 +41,15 @@
     },
     "Resources": {
     
-        "AdminsGroup": {
+        "AdminGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
-              "GroupName" : "Admins",
+              "GroupName" : "Admin",
               "Precedence" : 1,
               
               "RoleArn" : {
                 "Fn::GetAtt": [
-                    "AdminsGroupRole",
+                    "AdminGroupRole",
                     "Arn"
                 ]
               },
@@ -60,7 +60,7 @@
             }
         },
         
-        "AdminsGroupRole": {
+        "AdminGroupRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
                 "RoleName":{
@@ -70,7 +70,7 @@
                           {
                             "Ref": "authswabhimanid7abaec6UserPoolId"
                           },
-                          "-AdminsGroupRole"
+                          "-AdminGroupRole"
                         ]
                     ]
                 },
@@ -295,10 +295,10 @@
     
     "Outputs": {
       
-        "AdminsGroupRole": {
+        "AdminGroupRole": {
             "Value": {
                 "Fn::GetAtt": [
-                    "AdminsGroupRole",
+                    "AdminGroupRole",
                     "Arn"
                 ]
             }

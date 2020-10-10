@@ -48,7 +48,8 @@ const Authticator = (props) => {
     if (state === 'signedIn') {
 
       Auth.currentUserInfo().then((data) => {
-        dispatch(currentUsersInfo(data.username))});
+        let user = { owner: data.username, ownerName: data.attributes.name };
+        dispatch(currentUsersInfo(user))});
 
     }
 }
