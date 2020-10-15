@@ -11,7 +11,6 @@ export const en = {
   CreateNews:"Create News", 
   HeadLineofNews : "       Please enter headline of your news                           ",
   ContentofNews  : "       Please enter content of your news                            ",
-
 };
 
 export const mr = {

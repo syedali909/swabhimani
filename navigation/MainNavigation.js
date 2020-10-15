@@ -1,7 +1,7 @@
 // You can import Ionicons from @expo/vector-icons if you use Expo or
 // react-native-vector-icons/Ionicons otherwise.
 import * as React from "react";
-import { Text, View } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -11,6 +11,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import {
   createDrawerNavigator,
+  DrawerItem,
   DrawerItemList,
 } from "@react-navigation/drawer";
 import SearchScreen from "../screeens/SearchScreen";
@@ -23,7 +24,11 @@ import MapViewfile from "../component/NewsComponent/PlaceFinder";
 import NewsInDetailScreen from "../screeens/NewsScreen/NewsInDetailScreen";
 import { Button, IconButton, Title } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Auth } from "aws-amplify";
+import { currentUsersInfo } from "../store/action/newsAction";
+import ImageEditing from "../component/NewsComponent/ImageEditing";
+import ViideoPlayer from "../component/NewsComponent/ViideoPlayer";
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -104,7 +109,8 @@ export const NewsPaperNavigator = () => {
         component={NewsAddingScreen}
         options={{ headerTitle: t("CreateNews") }}
       />
-      <Stack.Screen name="Camera" component={VideoRecording} />
+      <Stack.Screen name="ImageEditing" component={ImageEditing} />
+      <Stack.Screen name="VideoPlay" component={ViideoPlayer} />
       <Stack.Screen name="MapViewFile" component={MapViewfile} />
     </Stack.Navigator>
   );
@@ -136,6 +142,9 @@ const UtilitiesScreen = () => {
 
 function CustomDrawerContent(props) {
   const user = useSelector((state) => state.CreateNews.user);
+  const dispatch = useDispatch();
+
+  const screenSize = Dimensions.get("screen").height;
   return (
     <View style={{ paddingBottom: 20 }}>
       <View
@@ -154,9 +163,24 @@ function CustomDrawerContent(props) {
             props.navigation.navigate("Home");
           }}
         />
-        <Title style={{ fontStyle: "italic", color: "white" }}>Hello {user?.ownerName} </Title>
+        <Title style={{ fontStyle: "italic", color: "white" }}>
+          Hello {user?.ownerName}{" "}
+        </Title>
       </View>
       <DrawerItemList {...props} activeBackgroundColor="white" />
+      <Button
+        style={{
+          margin: 5,
+          backgroundColor: "#e8e4da",
+          alignSelf: "center",
+          position: "absolute",
+          top: screenSize - screenSize*0.13,
+        }}
+        labelStyle={{ color: "black" }}
+        onPress={() => signOut(dispatch)}
+      >
+        SignOut
+      </Button>
     </View>
   );
 }
@@ -184,7 +208,7 @@ export const MainNavigation = () => {
           options={{
             drawerLabel: t("Setting"),
             drawerIcon: (props) => (
-              <Icon name="settings" size={23}  color={props.color} />
+              <Icon name="settings" size={23} color={props.color} />
             ),
           }}
         />
@@ -201,6 +225,15 @@ export const MainNavigation = () => {
       </Drawer.Navigator>
     </NavigationContainer>
   );
+};
+
+const signOut = async (dispatch) => {
+  try {
+    await Auth.signOut();
+    dispatch(currentUsersInfo(null));
+  } catch (error) {
+    console.log("error signing out: ", error);
+  }
 };
 
 const LocalizationContextRef = () => {
